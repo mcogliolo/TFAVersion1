@@ -23,5 +23,10 @@ public class Manejador {
          
      this.comparador.comparar(navegador1, navegador2, url, ruta);
     }
+    
+    public void finalizarProceso(){
+    
+        System.exit(1); 
+    }
  
 }

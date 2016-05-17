@@ -15,7 +15,11 @@ import javax.swing.JOptionPane;
  *
  * @author mariela
  */
+
+
 public class VentanaPrincipal extends javax.swing.JFrame {
+    
+     Manejador manejador = new Manejador();
     private static final String ruta = "c:\\tmp\\";
     /**
      * Creates new form VentanaPrincipal
@@ -110,6 +114,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         });
 
         botonCancelar.setText("Cancelar");
+        botonCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonCancelarActionPerformed(evt);
+            }
+        });
 
         checkChrome.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         checkChrome.setForeground(new java.awt.Color(255, 255, 255));
@@ -232,7 +241,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     private void botonCompararActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCompararActionPerformed
         
-        Manejador manejador = new Manejador();
+       
         //codigo para obtener la URL
         String url = this.urlTextField.getText();
                 
@@ -271,6 +280,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         
         }
     }//GEN-LAST:event_botonCompararActionPerformed
+
+    private void botonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCancelarActionPerformed
+        manejador.finalizarProceso();
+    }//GEN-LAST:event_botonCancelarActionPerformed
 
     private ArrayList<String> validarCantidadNavegadores(){
         ArrayList<String> seleccionados = new ArrayList<String>();

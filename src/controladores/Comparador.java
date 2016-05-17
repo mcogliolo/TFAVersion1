@@ -15,6 +15,7 @@ import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -36,9 +37,15 @@ public class Comparador {
         
         
         public void comparar(String navegador1, String navegador2, String url, String ruta) {
-            String pathOne = ruta + "screenshot-br1.png";
-            String pathTwo = ruta + "screenshot-br2.png";
-            String pathThree = ruta + "z-result.png";
+          
+            String fecha = Utils.getFecha();
+            String path = ruta + fecha + "//";
+              
+            Utils.crearCarpeta(path);
+            
+            String pathOne = path +"screenshot-br1.png";
+            String pathTwo = path + "screenshot-br2.png";
+            String pathThree = path + "z-result.png";
         
             try {
 		navigateAndTakeScreenshot(navegador1, pathOne, url);
