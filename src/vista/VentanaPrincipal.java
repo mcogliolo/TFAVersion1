@@ -62,7 +62,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(800, 600));
         setMinimumSize(new java.awt.Dimension(800, 600));
         setResizable(false);
 
@@ -123,18 +122,22 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         checkChrome.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         checkChrome.setForeground(new java.awt.Color(255, 255, 255));
         checkChrome.setText("Chrome");
+        checkChrome.setOpaque(false);
 
         checkFireFox.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         checkFireFox.setForeground(new java.awt.Color(255, 255, 255));
         checkFireFox.setText("Mozilla Firefox");
+        checkFireFox.setOpaque(false);
 
         checkIE.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         checkIE.setForeground(new java.awt.Color(255, 255, 255));
         checkIE.setText("Internet Explorer");
+        checkIE.setOpaque(false);
 
         checkOpera.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         checkOpera.setForeground(new java.awt.Color(255, 255, 255));
         checkOpera.setText("Opera");
+        checkOpera.setOpaque(false);
 
         javax.swing.GroupLayout panelBotoneraLayout = new javax.swing.GroupLayout(panelBotonera);
         panelBotonera.setLayout(panelBotoneraLayout);
@@ -260,16 +263,27 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         } else if(  ((url.substring(0,7)).equals("http://")) ||
                     ((url.substring(0,8)).equals("https://")) )
                 {
+             
+                                    
                     
             String navegador1 =  "";
             String navegador2 = "";
         
             if(validarCantidadNavegadores() != null){
+                
+                    int respuesta = JOptionPane.showConfirmDialog(null,
+                       "Una vez iniciado el proceso de comparación, la aplicación no se"
+                               + " detendrá hasta completarlo. Desea continuar?", "Atención",
+                     JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+                       if (respuesta == JOptionPane.YES_OPTION){
+                
+                
+                
                 navegador1 = validarCantidadNavegadores().get(0);
                 navegador2 = validarCantidadNavegadores().get(1);
                 manejador.compararImg(navegador1, navegador2, url, ruta);
             }
-            
+            }
         } else {
             
             JOptionPane.showMessageDialog(this,
@@ -279,6 +293,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             
         
         }
+        
+        
+        
+        
     }//GEN-LAST:event_botonCompararActionPerformed
 
     private void botonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCancelarActionPerformed
