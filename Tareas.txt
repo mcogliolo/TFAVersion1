@@ -1,0 +1,4 @@
+1 - Agregar mas cosas a la plantilla del reporte
+2 - Escribir codigo para generar el reporte en el Manejador
+3 - LIMPIAR EL CODIGO MUGRIENTO
+4 - Menu ADMINISTRADOR
