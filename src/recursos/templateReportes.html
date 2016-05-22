@@ -1,0 +1,143 @@
+<html>
+	<head>
+		<title> Reportes </title>
+		
+		
+		<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+		<script type="text/javascript">
+			google.charts.load("current", {packages:["corechart"]});
+			google.charts.setOnLoadCallback(drawChart);
+			function drawChart() {
+				var data = google.visualization.arrayToDataTable([
+					['Escala', 'Valor'],
+					['Pixeles Iguales',    pxIgual],
+					['Pixeles Diferentes',  pxDiff]
+					]);
+				
+				var options = {
+					title: 'Resultados',
+					is3D: true,
+					backgroundColor: {
+						'fill': '#C2BABA'
+					}
+				};
+
+				var chart = new google.visualization.PieChart(document.getElementById('piechart_3d'));
+				chart.draw(data, options);
+			}
+		</script>
+	
+		
+		
+		<style type="text/css">
+
+			.gallerycontainer{
+				position: relative;
+				/*Add a height attribute and set to largest image's height to prevent overlaying*/
+			}
+
+			.thumbnail img{
+				border: 2px solid black;
+				margin: 0 5px 5px 0;
+			}
+
+			h2 {
+				background-color: #E2E2E2;
+				font-family: Calibri, Arial; 
+				text-align: center;
+			}
+
+			.contenido{
+				padding-right: 1%;
+				padding-left: 1%;
+				margin-right: 2%;
+				margin-left: 2%;
+			}
+
+
+			.thumbnail:hover{
+				background-color: transparent;
+			}	
+
+			.thumbnail:hover img{
+				border: 1px solid black;
+			}
+
+			.thumbnail span{ /*CSS for enlarged image*/
+				position: absolute;
+				padding: 5px;
+				left: -1000px;
+				visibility: hidden;
+				text-decoration: none;
+			}
+
+			.thumbnail span img{ /*CSS for enlarged image*/
+				border-width: 0;
+				padding: 2px;
+			}
+
+			.thumbnail:hover span{ /*CSS for enlarged image*/
+				visibility: visible;
+				top: 0;
+				left: 230px; /*position where enlarged image should offset horizontally */
+				z-index: 50;
+			}
+			
+			.chart{
+				visibility: visible;
+				left: 230px; /*position where enlarged image should offset horizontally */
+				top: -1;
+				z-index: -50;
+				width: 900px;
+				height: 500px;
+				position: absolute;
+				padding: 5px;
+				text-decoration: none;
+			}
+			
+		</style>
+
+	</head>
+
+	<body bgcolor="#C2BABA">
+
+		<h2>Comparacion entre browser1 y browser2 - fecha - nombre</h2>
+		<div class= "Contenido">
+			<div class="gallerycontainer">
+
+				<br /><br /><br />
+				<a class="thumbnail" href="#thumb">
+					<img src="screenshot-br1.png" width="190px" height="127px" />
+					<span>
+						<div style="color:black"><b>Resultado browser1</b></div><br />
+						<img src="screenshot-br1.png" height="518px" width="922px" />
+					</span>
+					<div class="chart" id="piechart_3d"></div>
+				</a>
+				<br /><br />
+		
+				<a class="thumbnail" href="#thumb">
+					<img src="screenshot-br2.png" width="190px" height="127px" />
+					<span>
+						<div style="color:black"><b>Resultado browser2</b></div><br />
+						<img src="screenshot-br2.png" height="518px" width="922px" />
+					</span>
+				</a> 
+				<br /><br />
+
+				<a class="thumbnail" href="#thumb">
+					<img src="z-result.png" width="190px" height="127px" />
+					<span>
+						<div style="color:black"><b>Resultado comparacion</b></div><br />
+						<img src="z-result.png" height="518px" width="922px" />
+					</span>
+				</a> 
+
+			</div>
+		</div>
+		
+		
+		
+	</body>
+
+</html>

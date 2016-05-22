@@ -55,7 +55,9 @@ public class Comparador {
 		BufferedImage imgTwo = ImageIO.read(new File(pathTwo));
 
 		this.bufferedImagesEqual(imgOne, imgTwo, pathThree);
-
+                Utils.crearReporte(path + "reporte.html", navegador1, navegador2, "Prueba", fecha, 15, 85);
+                
+                
             } catch (HeadlessException e) {
 		System.out.println("There is not a display in plugged in. " + e.getMessage());
             } catch (InterruptedException e) {
