@@ -281,6 +281,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 
                 navegador1 = validarCantidadNavegadores().get(0);
                 navegador2 = validarCantidadNavegadores().get(1);
+                
                 manejador.compararImg(navegador1, navegador2, url, ruta);
             }
             }

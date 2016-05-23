@@ -12,6 +12,7 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import org.apache.commons.io.FileUtils;
 
 /**
@@ -61,6 +62,12 @@ public class Utils {
         FileUtils.writeStringToFile(newHtmlFile, htmlReemplazado);
         
         
+    }
+    
+    
+    public static void mostrarPopupError(String mensaje){
+        JOptionPane.showMessageDialog(null, mensaje, "Eror",
+                JOptionPane.ERROR_MESSAGE);
     }
     
 }

@@ -7,6 +7,7 @@ package controladores;
 
 import java.awt.AWTException;
 import java.awt.Color;
+import java.awt.Desktop;
 import java.awt.Dimension;
 import java.awt.HeadlessException;
 import java.awt.Rectangle;
@@ -20,6 +21,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javax.imageio.ImageIO;
+import javax.swing.JOptionPane;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
@@ -30,14 +32,23 @@ public class Comparador {
         
         private Navegador navegador;
         
+        private int cont = 0;
+        private int pxIgual = 0;
+        private int pxDiff = 0;
+        
+        
         public Comparador(Navegador navegador){
         
             this.navegador = navegador;
         }
         
         
-        public void comparar(String navegador1, String navegador2, String url, String ruta) {
+        public boolean comparar(String navegador1, String navegador2, String url, String ruta) {
           
+            this.cont = 0;
+            this.pxDiff = 0; 
+            this.pxIgual = 0;
+            
             String fecha = Utils.getFecha();
             String path = ruta + fecha + "//";
               
@@ -46,6 +57,7 @@ public class Comparador {
             String pathOne = path +"screenshot-br1.png";
             String pathTwo = path + "screenshot-br2.png";
             String pathThree = path + "z-result.png";
+            String pathReport = path + "reporte.html";
         
             try {
 		navigateAndTakeScreenshot(navegador1, pathOne, url);
@@ -55,19 +67,35 @@ public class Comparador {
 		BufferedImage imgTwo = ImageIO.read(new File(pathTwo));
 
 		this.bufferedImagesEqual(imgOne, imgTwo, pathThree);
-                Utils.crearReporte(path + "reporte.html", navegador1, navegador2, "Prueba", fecha, 15, 85);
+                this.pxIgual = this.cont - this.pxDiff;
+                Utils.crearReporte(pathReport, navegador1, navegador2, "Prueba", fecha, this.pxIgual, this.pxDiff);
                 
+                int mostrarReporte = JOptionPane.showConfirmDialog(null,
+                       "La prueba ha finalizado exitosamente. Desea ver los resultados?", "Confirmacion",
+                     JOptionPane.YES_NO_OPTION, JOptionPane.OK_OPTION);
+                       if (mostrarReporte == JOptionPane.YES_OPTION){
+                           File reporteMostrar = new File(pathReport);
+                           Desktop.getDesktop().open(reporteMostrar);
+                       }
+                
+                return true;
                 
             } catch (HeadlessException e) {
-		System.out.println("There is not a display in plugged in. " + e.getMessage());
+                Utils.mostrarPopupError("No se ha detectado un monitor");
+                return false;
             } catch (InterruptedException e) {
-		System.out.println("There was a problem with the thread: " + e.getMessage());
+		Utils.mostrarPopupError("Error de interrupción del S.O.");
+                return false;
             } catch (IOException e) {
-		System.out.println("Problem with accessing the file. " + e.getMessage());
-            } catch (AWTException ex) {
-                Logger.getLogger(Comparador.class.getName()).log(Level.SEVERE, null, ex);
-           }
-                     
+		Utils.mostrarPopupError("Problemas accediendo al archivo C:/tmp");
+                return false;
+            } catch (AWTException e) {
+                Utils.mostrarPopupError("Error con la placa grafica del sistema");
+                return false;
+            } catch (Exception ex) {
+                Utils.mostrarPopupError("Error inesperado");
+                return false;
+            }
             
         }
 
@@ -79,7 +107,6 @@ public class Comparador {
 		browser.get(url); // que abra esa ruta
 
 		Thread.sleep(10000);
-
 		browser.findElement(By.tagName("body")).click();
 		Actions action = new Actions(browser);
 		action.sendKeys(Keys.F11).perform();
@@ -87,6 +114,9 @@ public class Comparador {
 		Thread.sleep(8000);
 		
 		Robot robot = new Robot(); //maneja mi compu
+                robot.mouseMove(450, 450);
+                robot.mouseWheel(-500);
+                Thread.sleep(1500);
 		Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
 		Rectangle rectangle = new Rectangle(dimension);
 		BufferedImage image = robot.createScreenCapture(rectangle); //guardo la captura en la variable dinamica
@@ -104,13 +134,15 @@ public class Comparador {
 
 		if (img1.getWidth() == img2.getWidth() && img1.getHeight() == img2.getHeight()) {
 			BufferedImage bi = new BufferedImage(img1.getWidth(), img1.getHeight(), BufferedImage.TYPE_INT_RGB);
-
+                        
 			for (int x = 0; x < img1.getWidth(); x++) {
 				for (int y = 0; y < img1.getHeight(); y++) {
 					if (img1.getRGB(x, y) != img2.getRGB(x, y)) {
 						isEqual = false;
 						bi.setRGB(x, y, Color.ORANGE.getRGB());
+                                                this.pxDiff++;
 					}
+                                        this.cont++;
 				}
 			}
 

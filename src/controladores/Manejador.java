@@ -19,9 +19,8 @@ public class Manejador {
         this.comparador = new Comparador(this.navegador);
   }
     
-    public void compararImg(String navegador1, String navegador2, String url, String ruta){
-         
-     this.comparador.comparar(navegador1, navegador2, url, ruta);
+    public boolean compararImg(String navegador1, String navegador2, String url, String ruta){
+        return this.comparador.comparar(navegador1, navegador2, url, ruta);
     }
     
     public void finalizarProceso(){
