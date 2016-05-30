@@ -1,17 +1,4 @@
-1 - Agregar nombre de proyecto al reporte HTML (Reemplazar Prueba)
-2 - Crear metodo para crear la carpeta tmp en el disco C. En caso de que la carpeta ya existiera, el metodo debe preguntar y no hacer nada.
-4 - Agregar los navegadores IE y ChromeDriver al classpath
-5 - LIMPIAR EL CODIGO MUGRIENTO
-6 - Generar el .exe FINAL
-n - CAMBIAR CODIGO FUENTE.
-
-
-'
-¡
-! ^´
-+
-~  
-][
-
-{
-}
+1 - Agregar los navegadores IE y ChromeDriver al classpath
+2 - LIMPIAR EL CODIGO MUGRIENTO
+3 - Generar el .exe FINAL
+4 - Comenzar la libreria
