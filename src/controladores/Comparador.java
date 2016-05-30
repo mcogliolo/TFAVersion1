@@ -43,14 +43,32 @@ public class Comparador {
         }
         
         
-        public boolean comparar(String navegador1, String navegador2, String url, String ruta) {
+        public boolean comparar(String navegador1, String navegador2, String url, String ruta, String nombreVerdadero) {
           
             this.cont = 0;
             this.pxDiff = 0; 
             this.pxIgual = 0;
             
             String fecha = Utils.getFecha();
-            String path = ruta + fecha + "//";
+            
+            String nombrePrueba = Utils.removerCaracteresInvalidos(nombreVerdadero);
+            
+            String titulo;
+           String tituloDir;
+            
+                if (nombrePrueba.isEmpty()){
+                    titulo = "Sin Titulo";  
+                    tituloDir = titulo.trim(); //trim = le saca los espacios al texto.
+                }else if(nombrePrueba.length() > 50) {
+                    titulo = nombrePrueba.substring(0, 47) + "...";
+                    tituloDir = nombrePrueba.substring(0, 47).trim();
+                }else{
+                    titulo = nombrePrueba;
+                    tituloDir = titulo.trim();
+                }
+            
+            
+            String path = ruta + fecha + " - " + tituloDir + "//";
               
             Utils.crearCarpeta(path);
             
@@ -68,11 +86,11 @@ public class Comparador {
 
 		this.bufferedImagesEqual(imgOne, imgTwo, pathThree);
                 this.pxIgual = this.cont - this.pxDiff;
-                Utils.crearReporte(pathReport, navegador1, navegador2, "Prueba", fecha, this.pxIgual, this.pxDiff);
+                Utils.crearReporte(pathReport, navegador1, navegador2, titulo, fecha, this.pxIgual, this.pxDiff);
                 
                 int mostrarReporte = JOptionPane.showConfirmDialog(null,
-                       "La prueba ha finalizado exitosamente. Desea ver los resultados?", "Confirmacion",
-                     JOptionPane.YES_NO_OPTION, JOptionPane.OK_OPTION);
+                       "La prueba ha finalizado exitosamente. Desea ver los resultados?", "EXITO",
+                     JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
                        if (mostrarReporte == JOptionPane.YES_OPTION){
                            File reporteMostrar = new File(pathReport);
                            Desktop.getDesktop().open(reporteMostrar);

@@ -49,6 +49,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         panelURL = new javax.swing.JPanel();
         urlTextField = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
+        labelNombre = new javax.swing.JLabel();
+        nombreTextField = new javax.swing.JTextField();
         panelBotonera = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         botonComparar = new javax.swing.JButton();
@@ -78,25 +80,46 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Ingrese la URL:");
 
+        labelNombre.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        labelNombre.setForeground(new java.awt.Color(255, 255, 255));
+        labelNombre.setText("Ingrese nombre de la prueba:");
+
+        nombreTextField.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
+        nombreTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nombreTextFieldActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelURLLayout = new javax.swing.GroupLayout(panelURL);
         panelURL.setLayout(panelURLLayout);
         panelURLLayout.setHorizontalGroup(
             panelURLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelURLLayout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(urlTextField)
-                .addContainerGap())
+                .addContainerGap()
+                .addGroup(panelURLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(panelURLLayout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(urlTextField))
+                    .addGroup(panelURLLayout.createSequentialGroup()
+                        .addComponent(labelNombre)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(nombreTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 560, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(19, 19, 19))
         );
         panelURLLayout.setVerticalGroup(
             panelURLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelURLLayout.createSequentialGroup()
-                .addContainerGap()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelURLLayout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addGroup(panelURLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelNombre)
+                    .addComponent(nombreTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
                 .addGroup(panelURLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(urlTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addGap(33, 33, 33))
         );
 
         panelBotonera.setOpaque(false);
@@ -179,7 +202,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addGroup(panelBotoneraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(botonComparar)
                     .addComponent(botonCancelar))
-                .addContainerGap(176, Short.MAX_VALUE))
+                .addContainerGap(127, Short.MAX_VALUE))
         );
 
         panelTitulo.setOpaque(false);
@@ -197,7 +220,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addComponent(jLabel4)
                 .addGap(60, 60, 60)
                 .addComponent(jLabel3)
-                .addContainerGap(143, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panelTituloLayout.setVerticalGroup(
             panelTituloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -213,25 +236,25 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(panelBotonera, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(panelTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(19, 19, 19))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(panelURL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addContainerGap())))
-            .addComponent(panelBotonera, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(43, 43, 43)
                 .addComponent(panelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34)
+                .addGap(18, 18, 18)
                 .addComponent(panelURL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
                 .addComponent(panelBotonera, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -282,7 +305,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 navegador1 = validarCantidadNavegadores().get(0);
                 navegador2 = validarCantidadNavegadores().get(1);
                 
-                manejador.compararImg(navegador1, navegador2, url, ruta);
+                String nombrePrueba = this.nombreTextField.getText();
+                
+                
+                manejador.compararImg(navegador1, navegador2, url, ruta, nombrePrueba);
             }
             }
         } else {
@@ -304,6 +330,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         manejador.finalizarProceso();
     }//GEN-LAST:event_botonCancelarActionPerformed
 
+    private void nombreTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nombreTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nombreTextFieldActionPerformed
+
+  
     private ArrayList<String> validarCantidadNavegadores(){
         ArrayList<String> seleccionados = new ArrayList<String>();
         
@@ -387,6 +418,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel labelNombre;
+    private javax.swing.JTextField nombreTextField;
     private javax.swing.JPanel panelBotonera;
     private javax.swing.JPanel panelTitulo;
     private javax.swing.JPanel panelURL;

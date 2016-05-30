@@ -10,8 +10,6 @@ import java.io.IOException;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import org.apache.commons.io.FileUtils;
 
@@ -41,6 +39,15 @@ public class Utils {
     
     }
     
+    public static void crearCarpetaTMP(){
+        File carpeta = new File("C://tmp");
+        
+        if(!carpeta.exists()){
+            carpeta.mkdir();
+        }
+        
+        
+    }
     
     public static void crearCarpeta(String carpetaN) {
          File carpeta = new File(carpetaN);
@@ -49,6 +56,9 @@ public class Utils {
     }
     
     public static void crearReporte(String path, String browser1, String browser2, String nombre, String fecha, int pxIgual, int pixDiff) throws IOException {
+        
+        String fechaYhora = "Fecha: " + fecha.replaceAll(" ", " - Hora: ");
+        
         File templateReportes =  new File("src/recursos/templateReportes.html"); 
         String htmlString = FileUtils.readFileToString(templateReportes);
         String htmlReemplazado = htmlString.replaceAll("pxIgual", String.valueOf(pxIgual))
@@ -57,7 +67,7 @@ public class Utils {
                                            .replaceAll("browser1", browser1)
                                            .replaceAll("browser2", browser2)
                                            .replaceAll("nombre", nombre)
-                                           .replaceAll("fecha", fecha);
+                                           .replaceAll("fecha", fechaYhora);
         File newHtmlFile = new File(path);
         FileUtils.writeStringToFile(newHtmlFile, htmlReemplazado);
         
@@ -68,6 +78,39 @@ public class Utils {
     public static void mostrarPopupError(String mensaje){
         JOptionPane.showMessageDialog(null, mensaje, "Eror",
                 JOptionPane.ERROR_MESSAGE);
+    }
+    
+    public static String removerCaracteresInvalidos(String nombre){
+        
+        return nombre.replaceAll("ñ", "n")
+                     .replaceAll("/", "")
+                     .replaceAll(":", "")
+                     .replaceAll("¿", "")
+                     .replaceAll("|", "")
+                     .replaceAll("Ñ", "N")
+                     .replaceAll("@", "")
+                     .replaceAll("$", "")
+                     .replaceAll("%", "")
+                     .replaceAll("°", "")
+                     .replaceAll("<", "")
+                     .replaceAll(">", "")
+                     .replaceAll("\\\\", "")
+                     .replaceAll("\\*", "")
+                     .replaceAll("\\?", "")
+                     .replaceAll("'", "")
+                     .replaceAll("!", "")
+                     .replaceAll("¡", "")
+                     .replaceAll("\\{", "")
+                     .replaceAll("}", "")
+                     .replaceAll("\\+", "")
+                     .replaceAll("^", "")
+                     .replaceAll("~", "")
+                     .replaceAll("]", "")
+                     .replaceAll("\\[", "")
+                     .replaceAll("´", "")
+                     .replaceAll("\"", "");
+                     
+        
     }
     
 }

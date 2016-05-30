@@ -18,6 +18,7 @@ public class TFA {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        Utils.crearCarpetaTMP();
         VentanaPrincipal vp = new VentanaPrincipal();
         vp.show();
     }
