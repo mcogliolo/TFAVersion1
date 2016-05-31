@@ -24,7 +24,6 @@ public class Manejador {
     }
     
     public void finalizarProceso(){
-    
         System.exit(1); 
     }
  

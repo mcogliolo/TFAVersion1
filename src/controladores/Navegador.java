@@ -24,12 +24,12 @@ public class Navegador {
 			return new FirefoxDriver();
 
 		if (browserName.equalsIgnoreCase(Navegadores.CHROME)) {
-			System.setProperty("webdriver.chrome.driver", "C:\\eclipse\\chromedriver.exe");
+			System.setProperty("webdriver.chrome.driver", "C:\\chromedriver.exe");
 			return new ChromeDriver();
 		}
 
 		if (browserName.equalsIgnoreCase(Navegadores.IE)) {
-			System.setProperty("webdriver.ie.driver", "C:\\eclipse\\iedriver.exe");
+			System.setProperty("webdriver.ie.driver", "C:\\iedriver.exe");
 			DesiredCapabilities dc = DesiredCapabilities.internetExplorer(); //creo un profile nuevo
 			dc.setCapability(InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS, true);
 			return new InternetExplorerDriver(dc);
@@ -37,6 +37,5 @@ public class Navegador {
 
 		return new OperaDriver();
 	}
-
     
 }

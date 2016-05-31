@@ -73,10 +73,9 @@ public class Utils {
         
         
     }
-    
-    
+        
     public static void mostrarPopupError(String mensaje){
-        JOptionPane.showMessageDialog(null, mensaje, "Eror",
+        JOptionPane.showMessageDialog(null, mensaje, "Error",
                 JOptionPane.ERROR_MESSAGE);
     }
     
@@ -113,4 +112,29 @@ public class Utils {
         
     }
     
+    
+    public static String obtenerBrowserInvalido(String mensaje){
+    
+        if(mensaje.toUpperCase().contains("CHROME"))
+            return "El archivo Chromedriver.exe no se encuentra instalado.";
+        
+        if(mensaje.toUpperCase().contains("FIREFOX"))
+            return "El navegador firefox no se encuntra instalado en el sistema.";
+        
+        if(mensaje.toUpperCase().contains("EXPLORER") && mensaje.toUpperCase().contains("UNABLE TO FIND ELEMENT"))
+            return "La versión del navegador Internet Explorer debe ser igual o inferior a la 10 ";
+        
+        if(mensaje.toUpperCase().contains("IEDRIVER"))
+            return "El archivo iedriver.exe no se encuentra instalado.";
+        
+        if(mensaje.toUpperCase().contains("OPERA"))
+            return "El navegador Opera no se encuntra instalado en el sistema.";
+        
+        if(mensaje.toUpperCase().contains("EXPLORER"))
+            return "El navegador Explorer no se encuntra instalado en el sistema.";
+        
+        return "";
+        
+    }
+     
 }

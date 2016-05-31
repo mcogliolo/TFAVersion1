@@ -16,13 +16,8 @@ import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -36,15 +31,11 @@ public class Comparador {
         private int pxIgual = 0;
         private int pxDiff = 0;
         
-        
         public Comparador(Navegador navegador){
-        
             this.navegador = navegador;
         }
-        
-        
+                
         public boolean comparar(String navegador1, String navegador2, String url, String ruta, String nombreVerdadero) {
-          
             this.cont = 0;
             this.pxDiff = 0; 
             this.pxIgual = 0;
@@ -54,15 +45,15 @@ public class Comparador {
             String nombrePrueba = Utils.removerCaracteresInvalidos(nombreVerdadero);
             
             String titulo;
-           String tituloDir;
+            String tituloDir;
             
-                if (nombrePrueba.isEmpty()){
+                if (nombrePrueba.isEmpty()) {
                     titulo = "Sin Titulo";  
                     tituloDir = titulo.trim(); //trim = le saca los espacios al texto.
-                }else if(nombrePrueba.length() > 50) {
+                } else if (nombrePrueba.length() > 50) {
                     titulo = nombrePrueba.substring(0, 47) + "...";
                     tituloDir = nombrePrueba.substring(0, 47).trim();
-                }else{
+                } else {
                     titulo = nombrePrueba;
                     tituloDir = titulo.trim();
                 }
@@ -78,7 +69,8 @@ public class Comparador {
             String pathReport = path + "reporte.html";
         
             try {
-		navigateAndTakeScreenshot(navegador1, pathOne, url);
+		
+                navigateAndTakeScreenshot(navegador1, pathOne, url);
 		navigateAndTakeScreenshot(navegador2, pathTwo, url);
 
 		BufferedImage imgOne = ImageIO.read(new File(pathOne));
@@ -91,7 +83,7 @@ public class Comparador {
                 int mostrarReporte = JOptionPane.showConfirmDialog(null,
                        "La prueba ha finalizado exitosamente. Desea ver los resultados?", "EXITO",
                      JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
-                       if (mostrarReporte == JOptionPane.YES_OPTION){
+                       if (mostrarReporte == JOptionPane.YES_OPTION) {
                            File reporteMostrar = new File(pathReport);
                            Desktop.getDesktop().open(reporteMostrar);
                        }
@@ -110,11 +102,25 @@ public class Comparador {
             } catch (AWTException e) {
                 Utils.mostrarPopupError("Error con la placa grafica del sistema");
                 return false;
-            } catch (Exception ex) {
-                Utils.mostrarPopupError("Error inesperado");
+            } 
+            catch (IllegalStateException ex) {
+                String respuesta = Utils.obtenerBrowserInvalido(ex.getMessage());
+                if (respuesta.isEmpty()) {
+                     Utils.mostrarPopupError("Error inesperado");
+                } else {
+                    Utils.mostrarPopupError(respuesta);
+                }            
+                return false;
+           } catch (Exception ex) {
+               String respuesta = Utils.obtenerBrowserInvalido(ex.getMessage());
+                if (respuesta.isEmpty()) {
+                     Utils.mostrarPopupError("Error inesperado");
+                } else {
+                    Utils.mostrarPopupError(respuesta);
+                }            
                 return false;
             }
-            
+           
         }
 
 
@@ -173,62 +179,6 @@ public class Comparador {
 		isEqual = true;
 
 		return isEqual;
-	}
-	
-	private boolean isPixelEqualtoItsContext(int x, int y, BufferedImage img1, BufferedImage img2) {
-		if (img1.getRGB(x, y) != img2.getRGB(x, y))
-			return false;
-		if (img1.getRGB(x, y) != img2.getRGB(x - 1, y))
-			return false;
-		if (img1.getRGB(x, y) != img2.getRGB(x - 2, y))
-			return false;
-		if (img1.getRGB(x, y) != img2.getRGB(x + 1, y))
-			return false;
-		if (img1.getRGB(x, y) != img2.getRGB(x + 2, y))
-			return false;
-		if (img1.getRGB(x, y) != img2.getRGB(x, y - 1))
-			return false;
-		if (img1.getRGB(x, y) != img2.getRGB(x - 1, y - 1))
-			return false;
-		if (img1.getRGB(x, y) != img2.getRGB(x - 2, y - 1))
-			return false;
-		if (img1.getRGB(x, y) != img2.getRGB(x + 1, y - 1))
-			return false;
-		if (img1.getRGB(x, y) != img2.getRGB(x + 2, y - 1))
-			return false;
-		if (img1.getRGB(x, y) != img2.getRGB(x, y - 2))
-			return false;
-		if (img1.getRGB(x, y) != img2.getRGB(x - 1, y - 2))
-			return false;
-		if (img1.getRGB(x, y) != img2.getRGB(x - 2, y - 2))
-			return false;
-		if (img1.getRGB(x, y) != img2.getRGB(x + 1, y - 2))
-			return false;
-		if (img1.getRGB(x, y) != img2.getRGB(x + 2, y - 2))
-			return false;
-		if (img1.getRGB(x, y) != img2.getRGB(x, y + 1))
-			return false;
-		if (img1.getRGB(x, y) != img2.getRGB(x - 1, y + 1))
-			return false;
-		if (img1.getRGB(x, y) != img2.getRGB(x - 2, y + 1))
-			return false;
-		if (img1.getRGB(x, y) != img2.getRGB(x + 1, y + 1))
-			return false;
-		if (img1.getRGB(x, y) != img2.getRGB(x + 2, y + 1))
-			return false;
-		if (img1.getRGB(x, y) != img2.getRGB(x, y + 2))
-			return false;
-		if (img1.getRGB(x, y) != img2.getRGB(x - 1, y + 2))
-			return false;
-		if (img1.getRGB(x, y) != img2.getRGB(x - 2, y + 2))
-			return false;
-		if (img1.getRGB(x, y) != img2.getRGB(x + 1, y + 2))
-			return false;
-		if (img1.getRGB(x, y) != img2.getRGB(x + 2, y + 2))
-			return false;
-		
-		return true;
-		
 	}
 
 }
