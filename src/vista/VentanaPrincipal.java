@@ -28,6 +28,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         initComponents();
         this.colocarFondo();
         this.setLocationRelativeTo(null);
+        this.setTitle("Detector de Incompatibilidades WEB");
     }
     
     public void colocarFondo(){
