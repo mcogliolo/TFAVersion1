@@ -97,7 +97,7 @@ public class Comparador {
 		Utils.mostrarPopupError("Error de interrupción del S.O.");
                 return false;
             } catch (IOException e) {
-		Utils.mostrarPopupError("Problemas accediendo al archivo C:/tmp");
+		Utils.mostrarPopupError("Problemas accediendo al archivo C:/pixeldiff/tmp");
                 return false;
             } catch (AWTException e) {
                 Utils.mostrarPopupError("Error con la placa grafica del sistema");
@@ -106,7 +106,7 @@ public class Comparador {
             catch (IllegalStateException ex) {
                 String respuesta = Utils.obtenerBrowserInvalido(ex.getMessage());
                 if (respuesta.isEmpty()) {
-                     Utils.mostrarPopupError("Error inesperado");
+                    Utils.mostrarPopupError("Error inesperado");
                 } else {
                     Utils.mostrarPopupError(respuesta);
                 }            

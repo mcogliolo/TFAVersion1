@@ -40,10 +40,16 @@ public class Utils {
     }
     
     public static void crearCarpetaTMP(){
-        File carpeta = new File("C://tmp");
+        File carpeta = new File("C://pixeldiff");
         
         if(!carpeta.exists()){
             carpeta.mkdir();
+        }
+        
+        File carpetaTMP = new File("C://pixeldiff//tmp");
+        
+        if(!carpetaTMP.exists()){
+            carpetaTMP.mkdir();
         }
         
         
@@ -59,7 +65,7 @@ public class Utils {
         
         String fechaYhora = "Fecha: " + fecha.replaceAll(" ", " - Hora: ");
         
-        File templateReportes =  new File("src/recursos/templateReportes.html"); 
+        File templateReportes =  new File("C://pixeldiff//utils//templateReportes.html"); 
         String htmlString = FileUtils.readFileToString(templateReportes);
         String htmlReemplazado = htmlString.replaceAll("pxIgual", String.valueOf(pxIgual))
                                            .replaceAll("pxIgual", String.valueOf(pxIgual))
@@ -119,7 +125,7 @@ public class Utils {
             return "El archivo Chromedriver.exe no se encuentra instalado.";
         
         if(mensaje.toUpperCase().contains("FIREFOX"))
-            return "El navegador firefox no se encuntra instalado en el sistema.";
+            return "El navegador firefox no se encuentra instalado en el sistema.";
         
         if(mensaje.toUpperCase().contains("EXPLORER") && mensaje.toUpperCase().contains("UNABLE TO FIND ELEMENT"))
             return "La versión del navegador Internet Explorer debe ser igual o inferior a la 10 ";
@@ -128,10 +134,10 @@ public class Utils {
             return "El archivo iedriver.exe no se encuentra instalado.";
         
         if(mensaje.toUpperCase().contains("OPERA"))
-            return "El navegador Opera no se encuntra instalado en el sistema.";
+            return "El navegador Opera no se encuentra instalado en el sistema.";
         
         if(mensaje.toUpperCase().contains("EXPLORER"))
-            return "El navegador Explorer no se encuntra instalado en el sistema.";
+            return "El navegador Explorer no se encuentra instalado en el sistema.";
         
         return "";
         

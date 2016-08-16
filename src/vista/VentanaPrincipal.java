@@ -20,7 +20,7 @@ import javax.swing.JOptionPane;
 public class VentanaPrincipal extends javax.swing.JFrame {
     
      Manejador manejador = new Manejador();
-    private static final String ruta = "c:\\tmp\\";
+    private static final String ruta = "c:\\pixeldiff\\tmp\\";
     /**
      * Creates new form VentanaPrincipal
      */
@@ -127,7 +127,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Seleccione los navegadores a comprar:");
+        jLabel2.setText("Seleccione los navegadores a comparar:");
 
         botonComparar.setText("Comparar");
         botonComparar.addActionListener(new java.awt.event.ActionListener() {
